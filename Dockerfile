@@ -1,10 +1,11 @@
 # Globals and input args
-FROM python:3.11.5-alpine3.18
+FROM python:3.11-alpine
 WORKDIR /app
 
 # Prepare our app requirements and install it...
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt && \
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
 # Due to CVE-2022-40897 removing setuptools
     pip install setuptools --upgrade
 
